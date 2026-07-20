@@ -14,10 +14,6 @@ RUN composer install --optimize-autoloader --no-scripts --no-interaction
 RUN mkdir -p storage/framework/{sessions,views,cache,testing} storage/logs bootstrap/cache \
     && chmod -R 777 storage bootstrap/cache
 
-RUN php artisan config:cache \
-    && php artisan route:cache \
-    && php artisan view:cache
-
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
