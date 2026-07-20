@@ -1,11 +1,10 @@
 FROM php:8.4-cli
 
-# Install extensions
 RUN apt-get update && apt-get install -y \
     git curl zip unzip libzip-dev libicu-dev libpng-dev libxml2-dev \
+    libonig-dev \
     && docker-php-ext-install pdo pdo_mysql mbstring zip intl bcmath gd xml
 
-# Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
