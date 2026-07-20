@@ -1,7 +1,10 @@
 #!/bin/sh
 
-echo "=== Clearing config cache ==="
+echo "=== Clearing all cache ==="
 php /app/artisan config:clear
+php /app/artisan cache:clear
+php /app/artisan route:clear
+php /app/artisan view:clear
 
 echo "=== Running migrations ==="
 php /app/artisan migrate --force
@@ -11,6 +14,8 @@ php /app/artisan db:seed --class=SiteSettingSeeder --force || echo "Seeder skipp
 
 echo "=== Caching config ==="
 php /app/artisan config:cache
+php /app/artisan route:cache
+php /app/artisan view:cache
 
 echo "=== Starting server on port 8000 ==="
 exec php /app/artisan serve --host=0.0.0.0 --port=8000
