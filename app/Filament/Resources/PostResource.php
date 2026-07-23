@@ -60,7 +60,7 @@ class PostResource extends Resource
 							->label('Foto Berita')
 							->helperText('Format yang didukung: JPG, PNG, WEBP. Maksimal 2MB.')
 							->image()
-							->disk('public')
+							->disk('supabase')
 							->directory('posts')
 							->visibility('public')
 							->downloadable()
@@ -102,7 +102,7 @@ class PostResource extends Resource
 			->columns([
 				Tables\Columns\ImageColumn::make('thumbnail')
 					->label('Foto')
-					->disk('public'),
+					->disk('supabase'),
 				Tables\Columns\TextColumn::make('title')
 					->label('Judul')
 					->searchable()

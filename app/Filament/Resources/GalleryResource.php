@@ -98,7 +98,7 @@ class GalleryResource extends Resource
                             ->label('Unggah Foto')
                             ->helperText('Format yang didukung: JPG, PNG, WEBP. Maksimal 2MB.')
                             ->image()
-                            ->disk('public')
+                            ->disk('supabase')
                             ->directory('gallery')
                             ->visibility('public')
                             ->downloadable()
@@ -115,7 +115,7 @@ class GalleryResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('image_path')
                     ->label('Foto')
-                    ->disk('public'),
+                    ->disk('supabase'),
                 Tables\Columns\TextColumn::make('category')
                     ->label('Kategori')
                     ->badge()

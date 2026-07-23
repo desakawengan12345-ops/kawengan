@@ -51,7 +51,7 @@ class SiteSettings extends Page implements HasForms
                             ->label('Foto Hero')
                             ->helperText('Foto background halaman utama. Format: JPG, PNG. Maksimal 2MB.')
                             ->image()
-                            ->disk('public')
+                            ->disk('supabase')
                             ->directory('settings')
                             ->visibility('public'),
                     ])->columns(2),

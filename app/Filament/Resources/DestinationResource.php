@@ -66,7 +66,7 @@ class DestinationResource extends Resource
 							->label('Unggah Foto')
 							->helperText('Format yang didukung: JPG, PNG, WEBP. Maksimal 2MB.')
 							->image()
-							->disk('public')
+							->disk('supabase')
 							->directory('destinations')
 							->visibility('public')
 							->downloadable()
@@ -111,7 +111,7 @@ class DestinationResource extends Resource
 			->columns([
 				Tables\Columns\ImageColumn::make('thumbnail')
 					->label('Foto')
-					->disk('public'),
+					->disk('supabase'),
 				Tables\Columns\TextColumn::make('name')
 					->label('Nama Destinasi')
 					->searchable(),

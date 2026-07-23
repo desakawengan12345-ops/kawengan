@@ -41,7 +41,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => rtrim(env('APP_URL', 'http://localhost'), '/').'/storage',
+            'url' => rtrim(env('APP_URL', 'http://localhost'), '/') . '/storage',
             'visibility' => 'public',
             'throw' => false,
             'report' => false,
@@ -60,6 +60,18 @@ return [
             'report' => false,
         ],
 
+        'supabase' => [
+            'driver' => 's3',
+            'key' => env('SUPABASE_KEY'),
+            'secret' => env('SUPABASE_SECRET'),
+            'region' => 'ap-southeast-1',
+            'bucket' => env('SUPABASE_BUCKET', 'kawengan'),
+            'endpoint' => 'https://bmfnqpwtqrdpiocholqh.supabase.co/storage/v1/s3',
+            'url' => 'https://bmfnqpwtqrdpiocholqh.supabase.co/storage/v1/object/public/kawengan',
+            'visibility' => 'public',
+            'use_path_style_endpoint' => true,
+            'throw' => true,
+        ],
     ],
 
     /*
