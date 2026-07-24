@@ -48,6 +48,34 @@ class StatsOverview extends BaseWidget
                 ->description('Hero & kontak')
                 ->color($settingStatus === 'Sudah dikonfigurasi' ? 'success' : 'danger')
                 ->icon('heroicon-o-cog-6-tooth'),
+
+            Stat::make('Storage Supabase', $this->getSupabaseStorageUsed())
+                ->description('Dari 1GB gratis')
+                ->color('info')
+                ->icon('heroicon-o-circle-stack'),
         ];
+    }
+
+    private function getSupabaseStorageUsed(): string
+    {
+        try {
+            $url = env('SUPABASE_URL') . '/storage/v1/bucket/' . env('SUPABASE_BUCKET', 'kawengan');
+            $response = \Illuminate\Support\Facades\Http::withHeaders([
+                'apikey' => env('SUPABASE_SECRET'),
+                'Authorization' => 'Bearer ' . env('SUPABASE_SECRET'),
+            ])->get($url);
+
+            if ($response->successful()) {
+                $data = $response->json();
+                $bytes = $data['size'] ?? 0;
+                $mb = round($bytes / 1024 / 1024, 2);
+                $percent = round(($mb / 1024) * 100, 1); // dari 1GB = 1024MB
+                return "{$mb} MB ({$percent}%)";
+            }
+        } catch (\Exception $e) {
+            return 'Tidak tersedia';
+        }
+
+        return 'Tidak tersedia';
     }
 }

@@ -104,7 +104,8 @@ class GalleryResource extends Resource
                             ->downloadable()
                             ->openable()
                             ->imagePreviewHeight('250')
-                            ->required(),
+                            ->required()
+                            ->maxSize(2048),
                     ]),
             ]);
     }

@@ -65,7 +65,8 @@ class PostResource extends Resource
 							->visibility('public')
 							->downloadable()
 							->openable()
-							->imagePreviewHeight('200'),
+							->imagePreviewHeight('200')
+							->maxSize(2048),
 					]),
 
 				Forms\Components\Section::make('Konten')
