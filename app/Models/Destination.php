@@ -31,19 +31,17 @@ class Destination extends Model
     {
         static::updating(function (Destination $destination) {
             if ($destination->isDirty('thumbnail') && $destination->getOriginal('thumbnail')) {
-                Storage::disk('public')->delete($destination->getOriginal('thumbnail'));
+                Storage::disk('supabase')->delete($destination->getOriginal('thumbnail'));
             }
         });
 
         static::deleting(function (Destination $destination) {
-            // Hapus thumbnail
             if ($destination->thumbnail) {
-                Storage::disk('public')->delete($destination->thumbnail);
+                Storage::disk('supabase')->delete($destination->thumbnail);
             }
 
-            // Hapus semua foto destinasi
             foreach ($destination->images as $image) {
-                Storage::disk('public')->delete($image->image_path);
+                Storage::disk('supabase')->delete($image->image_path);
             }
         });
     }

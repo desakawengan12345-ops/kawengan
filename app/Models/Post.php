@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 class Post extends Model
 {
@@ -27,13 +26,13 @@ class Post extends Model
     {
         static::updating(function (Post $post) {
             if ($post->isDirty('thumbnail') && $post->getOriginal('thumbnail')) {
-                Storage::disk('public')->delete($post->getOriginal('thumbnail'));
+                Storage::disk('supabase')->delete($post->getOriginal('thumbnail'));
             }
         });
 
         static::deleting(function (Post $post) {
             if ($post->thumbnail) {
-                Storage::disk('public')->delete($post->thumbnail);
+                Storage::disk('supabase')->delete($post->thumbnail);
             }
         });
     }

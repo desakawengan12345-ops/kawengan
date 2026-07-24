@@ -54,7 +54,11 @@ class SiteSettings extends Page implements HasForms
                             ->image()
                             ->disk('supabase')
                             ->directory('settings')
-                            ->visibility('public'),
+                            ->visibility('public')
+                            ->downloadable()
+                            ->openable()
+                            ->imagePreviewHeight('200')
+                            ->columnSpanFull(),
                     ])->columns(2),
 
                 Forms\Components\Section::make('Profil Desa')
