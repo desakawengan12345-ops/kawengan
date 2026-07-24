@@ -61,21 +61,21 @@ class StatsOverview extends BaseWidget
         try {
             $url = env('SUPABASE_URL') . '/storage/v1/bucket/' . env('SUPABASE_BUCKET', 'kawengan');
             $response = \Illuminate\Support\Facades\Http::withHeaders([
-                'apikey' => env('SUPABASE_SECRET'),
-                'Authorization' => 'Bearer ' . env('SUPABASE_SECRET'),
+                'apikey' => env('SUPABASE_SERVICE_KEY'),
+                'Authorization' => 'Bearer ' . env('SUPABASE_SERVICE_KEY'),
             ])->get($url);
 
             if ($response->successful()) {
                 $data = $response->json();
                 $bytes = $data['size'] ?? 0;
                 $mb = round($bytes / 1024 / 1024, 2);
-                $percent = round(($mb / 1024) * 100, 1); // dari 1GB = 1024MB
-                return "{$mb} MB ({$percent}%)";
+                $percent = round(($mb / 1024) * 100, 1);
+                return "{$mb} MB / 1GB ({$percent}%)";
             }
+
+            return 'Tidak tersedia';
         } catch (\Exception $e) {
             return 'Tidak tersedia';
         }
-
-        return 'Tidak tersedia';
     }
 }
