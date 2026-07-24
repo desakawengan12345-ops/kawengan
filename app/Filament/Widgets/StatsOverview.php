@@ -59,16 +59,20 @@ class StatsOverview extends BaseWidget
     private function getSupabaseStorageUsed(): string
     {
         try {
-            $url = env('SUPABASE_URL') . '/storage/v1/bucket/' . env('SUPABASE_BUCKET', 'kawengan');
+            $url = env('SUPABASE_URL') . '/storage/v1/object/list/' . env('SUPABASE_BUCKET', 'kawengan');
             $response = \Illuminate\Support\Facades\Http::withHeaders([
                 'apikey' => env('SUPABASE_SERVICE_KEY'),
                 'Authorization' => 'Bearer ' . env('SUPABASE_SERVICE_KEY'),
-            ])->get($url);
+            ])->post($url, [
+                'limit' => 1000,
+                'offset' => 0,
+                'prefix' => '',
+            ]);
 
             if ($response->successful()) {
-                $data = $response->json();
-                $bytes = $data['size'] ?? 0;
-                $mb = round($bytes / 1024 / 1024, 2);
+                $files = $response->json();
+                $totalBytes = collect($files)->sum(fn($file) => $file['metadata']['size'] ?? 0);
+                $mb = round($totalBytes / 1024 / 1024, 2);
                 $percent = round(($mb / 1024) * 100, 1);
                 return "{$mb} MB / 1GB ({$percent}%)";
             }
