@@ -48,11 +48,6 @@ class StatsOverview extends BaseWidget
                 ->description('Hero & kontak')
                 ->color($settingStatus === 'Sudah dikonfigurasi' ? 'success' : 'danger')
                 ->icon('heroicon-o-cog-6-tooth'),
-
-            Stat::make('Storage Supabase', $this->getSupabaseStorageUsed())
-                ->description('Dari 1GB gratis')
-                ->color('info')
-                ->icon('heroicon-o-circle-stack'),
         ];
     }
 
