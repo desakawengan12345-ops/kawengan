@@ -12,6 +12,7 @@ class Destination extends Model
         'slug',
         'description',
         'thumbnail',
+        'thumbnail_size',
         'address',
         'gmaps_embed',
         'gmaps_link',
@@ -29,6 +30,20 @@ class Destination extends Model
 
     protected static function booted(): void
     {
+        static::saving(function (Destination $destination) {
+            if ($destination->isDirty('thumbnail') && $destination->thumbnail) {
+                try {
+                    $destination->thumbnail_size = Storage::disk('supabase')->size($destination->thumbnail);
+                } catch (\Exception $e) {
+                    $destination->thumbnail_size = 0;
+                }
+            }
+
+            if ($destination->isDirty('thumbnail') && !$destination->thumbnail) {
+                $destination->thumbnail_size = 0;
+            }
+        });
+
         static::updating(function (Destination $destination) {
             if ($destination->isDirty('thumbnail') && $destination->getOriginal('thumbnail')) {
                 Storage::disk('supabase')->delete($destination->getOriginal('thumbnail'));

@@ -161,18 +161,26 @@ class SiteSettings extends Page implements HasForms
     {
         $data = $this->form->getState();
 
-        // Field yang berisi file
         $fileFields = ['hero_image'];
 
         foreach ($fileFields as $field) {
             if (isset($data[$field])) {
-                // Ambil nilai lama dari database
                 $oldValue = SiteSetting::where('key', $field)->value('value');
 
-                // Hapus file lama jika berbeda dengan yang baru
                 if ($oldValue && $oldValue !== $data[$field]) {
                     Storage::disk('supabase')->delete($oldValue);
                 }
+
+                // Simpan ukuran file
+                $fileSize = 0;
+                if (!empty($data[$field])) {
+                    try {
+                        $fileSize = Storage::disk('supabase')->size($data[$field]);
+                    } catch (\Exception $e) {
+                        $fileSize = 0;
+                    }
+                }
+                $data[$field . '_size'] = $fileSize;
             }
         }
 

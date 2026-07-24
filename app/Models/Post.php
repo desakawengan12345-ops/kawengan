@@ -11,6 +11,7 @@ class Post extends Model
         'title',
         'slug',
         'thumbnail',
+        'thumbnail_size',
         'excerpt',
         'content',
         'is_published',
@@ -24,6 +25,20 @@ class Post extends Model
 
     protected static function booted(): void
     {
+        static::saving(function (Post $post) {
+            if ($post->isDirty('thumbnail') && $post->thumbnail) {
+                try {
+                    $post->thumbnail_size = Storage::disk('supabase')->size($post->thumbnail);
+                } catch (\Exception $e) {
+                    $post->thumbnail_size = 0;
+                }
+            }
+
+            if ($post->isDirty('thumbnail') && !$post->thumbnail) {
+                $post->thumbnail_size = 0;
+            }
+        });
+
         static::updating(function (Post $post) {
             if ($post->isDirty('thumbnail') && $post->getOriginal('thumbnail')) {
                 Storage::disk('supabase')->delete($post->getOriginal('thumbnail'));

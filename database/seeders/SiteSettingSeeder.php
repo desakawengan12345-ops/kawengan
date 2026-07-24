@@ -13,6 +13,7 @@ class SiteSettingSeeder extends Seeder
             ['key' => 'hero_title',       'value' => 'Selamat Datang di Desa Kawengan'],
             ['key' => 'hero_subtitle',    'value' => 'Jelajahi keindahan dan budaya desa kami'],
             ['key' => 'hero_image',       'value' => ''],
+            ['key' => 'hero_image_size',  'value' => '0'],
             ['key' => 'about_title',      'value' => 'Tentang Desa Kawengan'],
             ['key' => 'about_content',    'value' => 'Isi profil desa di sini...'],
             ['key' => 'history_title',    'value' => 'Sejarah Desa'],
