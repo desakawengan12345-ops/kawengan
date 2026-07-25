@@ -4,8 +4,9 @@
             {{ $this->form }}
 
             <div class="mt-6">
-                <x-filament::button type="submit">
-                    Simpan Pengaturan
+                <x-filament::button type="submit" wire:loading.attr="disabled">
+                    <span wire:loading.remove>Simpan Pengaturan</span>
+                    <span wire:loading>Menyimpan...</span>
                 </x-filament::button>
             </div>
         </form>
