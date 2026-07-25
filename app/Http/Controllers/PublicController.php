@@ -102,4 +102,13 @@ class PublicController extends Controller
 
         return view('public.news-detail', compact('post'));
     }
+
+    public function potential()
+    {
+        $isPotentialEnabled = SiteSetting::where('key', 'feature_potential')->value('value');
+        if (!$isPotentialEnabled) abort(404);
+
+        $settings = $this->settings();
+        return view('public.potential', compact('settings'));
+    }
 }

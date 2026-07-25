@@ -39,6 +39,12 @@ class SiteSettings extends Page implements HasForms
     {
         return $form
             ->schema([
+                Forms\Components\TextInput::make('site_name')
+                    ->label('Nama Desa / Website')
+                    ->placeholder('contoh: Desa Kawengan')
+                    ->required()
+                    ->columnSpanFull(),
+                    
                 Forms\Components\Section::make('Beranda')
                     ->schema([
                         Forms\Components\TextInput::make('hero_title')
@@ -144,11 +150,38 @@ class SiteSettings extends Page implements HasForms
                             ->prefixIcon('heroicon-o-globe-alt'),
                     ])->columns(2),
 
+                Forms\Components\Section::make('Peta Potensi')
+                    ->schema([
+                        Forms\Components\FileUpload::make('potential_image')
+                            ->label('Foto Peta Potensi')
+                            ->helperText('Format: JPG, PNG. Landscape. Maksimal 5MB.')
+                            ->image()
+                            ->disk('supabase')
+                            ->directory('settings')
+                            ->visibility('public')
+                            ->downloadable()
+                            ->openable()
+                            ->imagePreviewHeight('200')
+                            ->columnSpanFull()
+                            ->maxSize(5120),
+                        Forms\Components\Textarea::make('potential_description')
+                            ->label('Deskripsi')
+                            ->placeholder('Tuliskan deskripsi singkat tentang potensi desa...')
+                            ->rows(4)
+                            ->columnSpanFull(),
+                    ]),
+
                 Forms\Components\Section::make('Fitur Website')
                     ->schema([
                         Forms\Components\Toggle::make('feature_news')
                             ->label('Aktifkan Fitur Berita')
                             ->helperText('Nonaktifkan jika berita tidak rutin diupdate')
+                            ->onIcon('heroicon-m-check')
+                            ->offIcon('heroicon-m-x-mark')
+                            ->default(true),
+                        Forms\Components\Toggle::make('feature_potential')
+                            ->label('Aktifkan Fitur Peta Potensi')
+                            ->helperText('Nonaktifkan jika peta potensi tidak ingin ditampilkan')
                             ->onIcon('heroicon-m-check')
                             ->offIcon('heroicon-m-x-mark')
                             ->default(true),
@@ -161,7 +194,7 @@ class SiteSettings extends Page implements HasForms
     {
         $data = $this->form->getState();
 
-        $fileFields = ['hero_image'];
+        $fileFields = ['hero_image', 'potential_image'];
 
         foreach ($fileFields as $field) {
             if (isset($data[$field])) {

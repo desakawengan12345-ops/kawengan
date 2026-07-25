@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Tentang Desa - Desa Wisata Kawengan')
+@section('title', 'Tentang Desa - ' . \App\Models\SiteSetting::get('site_name', 'Desa Wisata'))
 
 @section('content')
 
@@ -8,7 +8,7 @@
     <section style="padding: 60px 0 40px; background-color: var(--bs-tertiary-bg)">
         <div class="container">
             <p class="section-label">Mengenal Kami</p>
-            <h1 class="section-title">Tentang Desa Kawengan</h1>
+            <h1 class="section-title">Tentang {{ \App\Models\SiteSetting::get('site_name', 'Desa Kami') }}</h1>
             <p class="section-subtitle">Kenali lebih dalam tentang desa kami</p>
         </div>
     </section>
@@ -26,7 +26,7 @@
                     {{-- Foto (tampil di sini saat mobile, setelah judul) --}}
                     @if(!empty($settings['hero_image']))
                         <div class="d-lg-none mb-4">
-                            <img src="{{ Storage::url($settings['hero_image']) }}" alt="Desa Kawengan"
+                            <img src="{{ Storage::url($settings['hero_image']) }}" alt="{{ \App\Models\SiteSetting::get('site_name', 'Desa Wisata') }}"
                                 class="img-fluid rounded-xl shadow w-100">
                         </div>
                     @endif
@@ -63,7 +63,7 @@
                 {{-- Kolom Kanan (hanya tampil di PC) --}}
                 <div class="col-lg-6 d-none d-lg-block">
                     @if(!empty($settings['hero_image']))
-                        <img src="{{ Storage::url($settings['hero_image']) }}" alt="Desa Kawengan"
+                        <img src="{{ Storage::url($settings['hero_image']) }}" alt="{{ \App\Models\SiteSetting::get('site_name', 'Desa Wisata') }}"
                             class="img-fluid rounded-xl shadow w-100" style="aspect-ratio: 4/3; object-fit: cover">
                     @endif
 
@@ -115,7 +115,7 @@
         <div class="container text-center">
             <p class="section-label">Selanjutnya</p>
             <h2 class="section-title mb-3">Jelajahi Destinasi Wisata</h2>
-            <p class="text-muted mb-4">Temukan tempat-tempat menarik yang bisa kamu kunjungi di Desa Kawengan</p>
+            <p class="text-muted mb-4">Temukan tempat-tempat menarik yang bisa kamu kunjungi di {{ \App\Models\SiteSetting::get('site_name', 'desa kami') }}</p>
             <a href="{{ route('destinations.index') }}" class="btn btn-primary btn-lg px-5">
                 <i class="bi bi-map me-2"></i>Lihat Destinasi
             </a>

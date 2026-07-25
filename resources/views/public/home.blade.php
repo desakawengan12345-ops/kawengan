@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Beranda - Desa Wisata Kawengan')
+@section('title', 'Beranda - ' . \App\Models\SiteSetting::get('site_name', 'Desa Wisata'))
 
 @section('content')
 
@@ -41,7 +41,8 @@
                 <div>
                     <p class="section-label">Temukan</p>
                     <h2 class="section-title">Destinasi Wisata</h2>
-                    <p class="section-subtitle d-none d-md-block">Jelajahi tempat-tempat menarik di Desa Kawengan</p>
+                    <p class="section-subtitle d-none d-md-block">Jelajahi tempat-tempat menarik di
+                        {{ $settings['site_name'] ?? 'desa kami' }}</p>
                 </div>
                 <a href="{{ route('destinations.index') }}" class="btn btn-outline-primary mt-2 mt-md-0">
                     Lihat Semua <i class="bi bi-arrow-right ms-1"></i>
@@ -90,7 +91,7 @@
             <div class="row align-items-center g-5">
                 <div class="col-lg-6">
                     <p class="section-label">Mengenal Kami</p>
-                    <h2 class="section-title">{{ $settings['about_title'] ?? 'Tentang Desa Kawengan' }}</h2>
+                    <h2 class="section-title">Tentang {{ $settings['site_name'] ?? 'Desa Kami' }}</h2>
                     <div class="text-muted mt-3">
                         {!! Str::limit(strip_tags($settings['about_content'] ?? ''), 300) !!}
                     </div>
@@ -100,8 +101,8 @@
                 </div>
                 <div class="col-lg-6">
                     @if(!empty($settings['hero_image']))
-                        <img src="{{ Storage::url($settings['hero_image']) }}" alt="Desa Kawengan"
-                            class="img-fluid rounded-xl shadow">
+                        <img src="{{ Storage::url($settings['hero_image']) }}"
+                            alt="{{ $settings['site_name'] ?? 'Desa Wisata' }}" class="img-fluid rounded-xl shadow">
                     @else
                         <div class="bg-secondary rounded-xl d-flex align-items-center justify-content-center"
                             style="height:350px">
@@ -121,7 +122,7 @@
                     <div class="col">
                         <p class="section-label">Dokumentasi</p>
                         <h2 class="section-title">Galeri Foto</h2>
-                        <p class="section-subtitle">Momen-momen indah di Desa Kawengan</p>
+                        <p class="section-subtitle">Momen-momen indah di {{ $settings['site_name'] ?? 'desa kami' }}</p>
                     </div>
                     <div class="col-auto">
                         <a href="{{ route('gallery') }}" class="btn btn-outline-primary">
@@ -147,7 +148,7 @@
             </div>
         </section>
     @endif
-
+    
     {{-- BERITA --}}
     @if($posts->count() > 0)
         <section style="padding: 80px 0; background-color: var(--bs-tertiary-bg)">
@@ -156,7 +157,7 @@
                     <div>
                         <p class="section-label">Informasi Terkini</p>
                         <h2 class="section-title">Berita Terbaru</h2>
-                        <p class="section-subtitle d-none d-md-block">Update terbaru dari Desa Kawengan</p>
+                        <p class="section-subtitle d-none d-md-block">Update terbaru dari {{ $settings['site_name'] ?? 'desa kami' }}</p>
                     </div>
                     <a href="{{ route('news.index') }}" class="btn btn-outline-primary mt-2 mt-md-0">
                         Lihat Semua <i class="bi bi-arrow-right ms-1"></i>
@@ -196,6 +197,28 @@
             </div>
         </section>
     @endif
+
+    {{-- PETA POTENSI --}}
+@if(!empty($settings['feature_potential']) && $settings['feature_potential'] == '1' && !empty($settings['potential_image']))
+    <section style="padding: 80px 0">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-start align-items-md-end flex-column flex-md-row mb-4">
+                <div>
+                    <p class="section-label">Potensi Desa</p>
+                    <h2 class="section-title">Peta Potensi</h2>
+                    <p class="section-subtitle d-none d-md-block">Potensi unggulan {{ $settings['site_name'] ?? 'desa kami' }}</p>
+                </div>
+                <a href="{{ route('potential') }}" class="btn btn-outline-primary mt-2 mt-md-0">
+                    Lihat Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+            </div>
+            <img src="{{ Storage::url($settings['potential_image']) }}"
+                 alt="Peta Potensi {{ $settings['site_name'] ?? 'Desa' }}"
+                 class="img-fluid rounded-xl shadow w-100"
+                 style="aspect-ratio: 16/9; object-fit: contain; background-color: var(--card-bg)">
+        </div>
+    </section>
+@endif
 
     {{-- KONTAK SINGKAT --}}
     <section style="padding: 80px 0; background-color: var(--primary)">

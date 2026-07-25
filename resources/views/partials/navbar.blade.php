@@ -5,7 +5,7 @@
         <a class="navbar-brand d-flex align-items-center gap-2" href="{{ route('home') }}">
             <img src="{{ asset('favicon.png') }}" alt="Logo" width="40" height="40">
             <div>
-                <div class="fw-bold lh-1">Desa Kawengan</div>
+                <div class="fw-bold lh-1">{{ \App\Models\SiteSetting::get('site_name', 'Desa Wisata') }}</div>
                 <div class="opacity-75" style="font-size:0.7rem">Desa Wisata</div>
             </div>
         </a>
@@ -32,6 +32,12 @@
                     <a class="nav-link {{ request()->routeIs('gallery') ? 'active' : '' }}"
                         href="{{ route('gallery') }}">Galeri</a>
                 </li>
+                @if(\App\Models\SiteSetting::get('feature_potential') == '1')
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('potential') ? 'active' : '' }}"
+                            href="{{ route('potential') }}">Peta Potensi</a>
+                    </li>
+                @endif
                 @if(\App\Models\SiteSetting::get('feature_news') == '1')
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('news*') ? 'active' : '' }}"

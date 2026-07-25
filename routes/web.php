@@ -13,3 +13,4 @@ Route::get('/kontak', [PublicController::class, 'contact'])->name('contact');
 // Berita (kondisional)
 Route::get('/berita', [PublicController::class, 'news'])->name('news.index');
 Route::get('/berita/{slug}', [PublicController::class, 'newsDetail'])->name('news.show');
+Route::get('/peta-potensi', [PublicController::class, 'potential'])->name('potential');

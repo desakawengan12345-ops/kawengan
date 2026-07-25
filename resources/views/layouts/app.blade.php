@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Desa Wisata Kawengan')</title>
+    <title>@yield('title', \App\Models\SiteSetting::get('site_name', 'Desa Wisata'))</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">

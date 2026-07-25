@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Galeri - Desa Wisata Kawengan')
+@section('title', 'Galeri - ' . \App\Models\SiteSetting::get('site_name', 'Desa Wisata'))
 
 @section('content')
 
@@ -9,8 +9,7 @@
         <div class="container">
             <p class="section-label">Dokumentasi</p>
             <h1 class="section-title">Galeri Foto</h1>
-            <p class="section-subtitle">Momen-momen indah di Desa Kawengan</p>
-
+            <p class="section-subtitle">Momen-momen indah di {{ \App\Models\SiteSetting::get('site_name', 'desa kami') }}</p>
             {{-- Filter Kategori --}}
             <div class="d-flex gap-2 flex-wrap mt-3">
                 <button class="btn btn-primary btn-sm filter-btn active" data-filter="all">

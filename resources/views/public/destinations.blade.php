@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Destinasi Wisata - Desa Kawengan')
+@section('title', 'Destinasi Wisata - ' . \App\Models\SiteSetting::get('site_name', 'Desa Wisata'))
 
 @section('content')
 
@@ -9,7 +9,7 @@
     <div class="container">
         <p class="section-label">Jelajahi</p>
         <h1 class="section-title">Destinasi Wisata</h1>
-        <p class="section-subtitle">Temukan tempat-tempat menarik di Desa Kawengan</p>
+        <p class="section-subtitle">Temukan tempat-tempat menarik di {{ \App\Models\SiteSetting::get('site_name', 'desa kami') }}</p>
     </div>
 </section>
 

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $post->title . ' - Desa Wisata Kawengan')
+@section('title', $post->title . ' - ' . \App\Models\SiteSetting::get('site_name', 'Desa Wisata'))
 
 @section('content')
 

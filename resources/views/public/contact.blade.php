@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Kontak - Desa Wisata Kawengan')
+@section('title', 'Kontak - ' . \App\Models\SiteSetting::get('site_name', 'Desa Wisata'))
 
 @section('content')
 
