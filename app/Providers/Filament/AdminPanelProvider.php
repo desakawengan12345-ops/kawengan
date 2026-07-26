@@ -3,7 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Widgets\StatsOverview;
-use App\Filament\Widgets\StorageUsageWidget; 
+use App\Filament\Widgets\StorageUsageWidget;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -31,7 +31,13 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Amber,
             ])
-            ->brandName(\App\Models\SiteSetting::get('site_name', 'Desa Wisata'))
+            ->brandName(function () {
+                try {
+                    return \App\Models\SiteSetting::get('site_name', 'Desa Wisata');
+                } catch (\Exception $e) {
+                    return 'Desa Wisata';
+                }
+            })
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
@@ -39,7 +45,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->widgets([
                 StatsOverview::class,
-                StorageUsageWidget::class, 
+                StorageUsageWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -57,6 +63,5 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->favicon(asset('favicon.png'))
             ->profile();
-            
     }
 }
