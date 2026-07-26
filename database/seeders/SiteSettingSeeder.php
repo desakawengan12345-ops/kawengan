@@ -28,6 +28,7 @@ class SiteSettingSeeder extends Seeder
             ['key' => 'potential_image',        'value' => ''],
             ['key' => 'potential_image_size',   'value' => '0'],
             ['key' => 'potential_description',  'value' => ''],
+            ['key' => 'site_name', 'value' => 'Desa Kawengan'],
         ];
 
         foreach ($settings as $setting) {
