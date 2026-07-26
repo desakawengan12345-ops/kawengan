@@ -13,12 +13,10 @@ echo "=== Seeding ==="
 php /app/artisan db:seed --class=SiteSettingSeeder --force || echo "Seeder skipped or already run"
 
 echo "=== Creating storage symlink ==="
-php /app/artisan storage:link
+php /app/artisan storage:link || true
 
 echo "=== Caching config ==="
 php /app/artisan config:cache
-php /app/artisan route:cache
-php /app/artisan view:cache
 
 echo "=== Starting server on port 8000 ==="
 exec php /app/artisan serve --host=0.0.0.0 --port=8000
