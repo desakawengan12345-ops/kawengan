@@ -1,9 +1,9 @@
-<nav class="navbar navbar-expand-lg sticky-top" id="mainNavbar">
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNavbar">
     <div class="container">
 
         {{-- Logo Kiri --}}
         <a class="navbar-brand d-flex align-items-center gap-2" href="{{ route('home') }}">
-            <img src="{{ asset('favicon.png') }}" alt="Logo" width="40" height="40">
+            <img src="{{ asset('favicon.png') }}" alt="Logo" width="42" height="42" class="rounded-circle bg-white p-1">
             <div>
                 <div class="fw-bold lh-1">{{ \App\Models\SiteSetting::get('site_name', 'Desa Wisata') }}</div>
                 <div class="opacity-75" style="font-size:0.7rem">Desa Wisata</div>
@@ -11,9 +11,15 @@
         </a>
 
         {{-- Toggle Mobile --}}
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <div class="d-flex align-items-center gap-2 d-lg-none">
+            <button id="darkModeToggleMobile" title="Ganti tema">
+                <i class="bi bi-moon-fill" id="darkModeIconMobile"></i>
+            </button>
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
 
         {{-- Menu Tengah + Tombol Kanan --}}
         <div class="collapse navbar-collapse" id="navMenu">
@@ -55,11 +61,11 @@
             </ul>
 
             {{-- Tombol Kanan --}}
-            <div class="d-flex align-items-center gap-2 mt-2 mt-lg-0">
+            <div class="d-none d-lg-flex align-items-center gap-2 mt-2 mt-lg-0">
                 @if(\App\Models\SiteSetting::get('contact_phone'))
                     <a href="https://wa.me/{{ \App\Models\SiteSetting::get('contact_phone') }}" target="_blank"
                         class="btn btn-primary btn-sm px-3">
-                        <i class="bi bi-whatsapp me-1"></i>Hubungi Kami
+                        <i class="bi bi-whatsapp me-1"></i>Hubungi
                     </a>
                 @endif
                 <button id="darkModeToggle" title="Ganti tema">
