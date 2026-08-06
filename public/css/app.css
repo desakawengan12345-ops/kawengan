@@ -199,9 +199,13 @@ body {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
 }
 
-#mainNavbar.scrolled .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 33, 33, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-}
+    [data-bs-theme="light"] #mainNavbar.scrolled .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 33, 33, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    }
+
+    [data-bs-theme="dark"] #mainNavbar.scrolled .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    }
 
 /* ===== DARK MODE TOGGLE ===== */
 #darkModeToggle,
@@ -234,12 +238,12 @@ body {
 }
 
 #darkModeToggleMobile {
-    border-color: rgba(255, 255, 255, 0.3);
-    color: white;
+    color: var(--navbar-text);
+    border-color: var(--toggle-border);
 }
 
 #darkModeToggleMobile:hover {
-    background-color: rgba(255, 255, 255, 0.12);
+    background-color: var(--navbar-hover);
 }
 
 /* ===== HERO ===== */
@@ -838,13 +842,15 @@ body {
 
 /* ===== MOBILE RESPONSIVE ===== */
 @media (max-width: 991px) {
-    #mainNavbar {
+    /* At the top of the page, keep navbar transparent like desktop */
+    [data-bs-theme="light"] #mainNavbar,
+    [data-bs-theme="dark"] #mainNavbar {
         background: transparent;
         border-bottom-color: rgba(255, 255, 255, 0.15);
-        padding: 12px 0;
     }
 
-    #mainNavbar.scrolled {
+    /* Solid background once scrolled */
+    [data-bs-theme="light"] #mainNavbar.scrolled {
         background: rgba(255, 255, 255, 0.98) !important;
         border-bottom-color: rgba(0, 0, 0, 0.08);
     }
@@ -854,49 +860,103 @@ body {
         border-bottom-color: rgba(255, 255, 255, 0.08);
     }
 
-    #mainNavbar.menu-open {
-        background: rgba(15, 15, 15, 0.96) !important;
-        border-bottom-color: rgba(255, 255, 255, 0.1);
+    /* Solid background when mobile menu is open */
+    [data-bs-theme="light"] #mainNavbar.menu-open {
+        background: rgba(255, 255, 255, 0.98) !important;
+        border-bottom-color: rgba(0, 0, 0, 0.08);
     }
 
     [data-bs-theme="dark"] #mainNavbar.menu-open {
         background: rgba(22, 22, 22, 0.98) !important;
+        border-bottom-color: rgba(255, 255, 255, 0.08);
     }
 
     #mainNavbar .navbar-brand {
         font-size: 0.95rem;
     }
 
+    /* Mobile navbar colors follow theme variables */
     #mainNavbar .nav-link,
-    #mainNavbar .navbar-brand,
-    #mainNavbar #darkModeToggle,
-    #mainNavbar #darkModeToggleMobile,
-    #mainNavbar .navbar-toggler {
-        color: white;
+    #mainNavbar .navbar-brand {
+        color: var(--navbar-text);
+    }
+
+    [data-bs-theme="light"] #mainNavbar .nav-link,
+    [data-bs-theme="light"] #mainNavbar .navbar-brand,
+    [data-bs-theme="light"] #mainNavbar .navbar-brand .opacity-75 {
+        color: var(--shell-white) !important;
+        opacity: 1 !important;
+    }
+
+    [data-bs-theme="light"] #mainNavbar.scrolled .nav-link,
+    [data-bs-theme="light"] #mainNavbar.scrolled .navbar-brand,
+    [data-bs-theme="light"] #mainNavbar.scrolled .navbar-brand .opacity-75 {
+        color: var(--navbar-text-scrolled) !important;
+    }
+
+    [data-bs-theme="light"] #mainNavbar.scrolled .navbar-brand .opacity-75 {
+        opacity: 0.75 !important;
+    }
+
+    [data-bs-theme="light"] #mainNavbar.menu-open .nav-link,
+    [data-bs-theme="light"] #mainNavbar.menu-open .navbar-brand,
+    [data-bs-theme="light"] #mainNavbar.menu-open .navbar-brand .opacity-75,
+    [data-bs-theme="light"] #mainNavbar.menu-open #darkModeToggle,
+    [data-bs-theme="light"] #mainNavbar.menu-open #darkModeToggleMobile {
+        color: var(--navbar-text-scrolled) !important;
+    }
+
+    [data-bs-theme="light"] #mainNavbar.menu-open .navbar-brand .opacity-75 {
+        opacity: 0.75 !important;
+    }
+
+    [data-bs-theme="light"] #mainNavbar.menu-open .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 33, 33, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    }
+
+    [data-bs-theme="light"] #mainNavbar.menu-open #darkModeToggle,
+    [data-bs-theme="light"] #mainNavbar.menu-open #darkModeToggleMobile,
+    [data-bs-theme="light"] #mainNavbar.menu-open .navbar-toggler {
+        border-color: rgba(0, 0, 0, 0.2);
+    }
+
+    [data-bs-theme="light"] #mainNavbar .navbar-brand img {
+        background-color: rgba(255, 255, 255, 0.95) !important;
     }
 
     #mainNavbar .navbar-toggler {
-        border-color: rgba(255, 255, 255, 0.3);
+        border-color: var(--navbar-border);
     }
 
-    #mainNavbar .navbar-toggler-icon {
+    [data-bs-theme="light"] #mainNavbar .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    }
+
+    [data-bs-theme="dark"] #mainNavbar .navbar-toggler-icon {
         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
     }
 
     #mainNavbar.scrolled .nav-link,
-    #mainNavbar.scrolled .navbar-brand,
-    #mainNavbar.scrolled #darkModeToggle,
-    #mainNavbar.scrolled #darkModeToggleMobile,
-    #mainNavbar.scrolled .navbar-toggler {
+    #mainNavbar.scrolled .navbar-brand {
         color: var(--navbar-text-scrolled);
+    }
+
+    #mainNavbar.scrolled #darkModeToggle,
+    #mainNavbar.scrolled #darkModeToggleMobile {
+        color: var(--navbar-text-scrolled);
+        border-color: var(--navbar-border-scrolled);
     }
 
     #mainNavbar.scrolled .navbar-toggler {
         border-color: var(--navbar-border-scrolled);
     }
 
-    #mainNavbar.scrolled .navbar-toggler-icon {
+    [data-bs-theme="light"] #mainNavbar.scrolled .navbar-toggler-icon {
         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 33, 33, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    }
+
+    [data-bs-theme="dark"] #mainNavbar.scrolled .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
     }
 
     #mainNavbar .nav-link {
@@ -908,6 +968,11 @@ body {
         background-color: rgba(255, 255, 255, 0.1);
     }
 
+    [data-bs-theme="light"] #mainNavbar .nav-link:hover,
+    [data-bs-theme="light"] #mainNavbar .nav-link.active {
+        background-color: rgba(0, 0, 0, 0.06);
+    }
+
     #mainNavbar.scrolled .nav-link:hover,
     #mainNavbar.scrolled .nav-link.active {
         background-color: var(--navbar-hover-scrolled);
@@ -917,6 +982,10 @@ body {
         padding: 1rem 0;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         margin-top: 12px;
+    }
+
+    [data-bs-theme="light"] #mainNavbar .navbar-collapse {
+        border-top-color: rgba(0, 0, 0, 0.08);
     }
 
     #mainNavbar.scrolled .navbar-collapse {
