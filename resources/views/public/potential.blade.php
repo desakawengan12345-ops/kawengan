@@ -5,7 +5,7 @@
 @section('content')
 
 {{-- PAGE HEADER --}}
-<section style="padding: 60px 0 40px; background-color: var(--bs-tertiary-bg)">
+<section style="padding: 95px 0 40px; background-color: var(--bs-tertiary-bg)">
     <div class="container">
         <p class="section-label">Potensi Desa</p>
         <h1 class="section-title">Peta Potensi</h1>

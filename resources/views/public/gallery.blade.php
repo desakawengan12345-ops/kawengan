@@ -5,7 +5,7 @@
 @section('content')
 
     {{-- PAGE HEADER --}}
-    <section style="padding: 60px 0 40px; background-color: var(--bs-tertiary-bg)">
+    <section style="padding: 95px 0 40px; background-color: var(--bs-tertiary-bg)">
         <div class="container">
             <p class="section-label">Dokumentasi</p>
             <h1 class="section-title">Galeri Foto</h1>

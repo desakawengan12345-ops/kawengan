@@ -58,20 +58,20 @@
                 <h6>Kontak</h6>
                 <ul class="list-unstyled small text-muted footer-contact">
                     @if(\App\Models\SiteSetting::get('contact_phone'))
-                        <li class="mb-2 d-flex align-items-start justify-content-center justify-content-md-start gap-2">
-                            <i class="bi bi-whatsapp mt-1 text-green"></i>
+                        <li class="mb-2 d-flex align-items-center justify-content-center justify-content-md-start gap-2">
+                            <i class="bi bi-whatsapp text-success"></i>
                             <span class="text-break">{{ \App\Models\SiteSetting::get('contact_phone') }}</span>
                         </li>
                     @endif
                     @if(\App\Models\SiteSetting::get('contact_email'))
-                        <li class="mb-2 d-flex align-items-start justify-content-center justify-content-md-start gap-2">
-                            <i class="bi bi-envelope mt-1"></i>
+                        <li class="mb-2 d-flex align-items-center justify-content-center justify-content-md-start gap-2">
+                            <i class="bi bi-envelope" style="color: var(--primary)"></i>
                             <span class="text-break">{{ \App\Models\SiteSetting::get('contact_email') }}</span>
                         </li>
                     @endif
                     @if(\App\Models\SiteSetting::get('contact_address'))
-                        <li class="mb-2 d-flex align-items-start justify-content-center justify-content-md-start gap-2">
-                            <i class="bi bi-geo-alt mt-1"></i>
+                        <li class="mb-2 d-flex align-items-center justify-content-center justify-content-md-start gap-2">
+                            <i class="bi bi-geo-alt" style="color: var(--primary)"></i>
                             <span class="text-break">{{ \App\Models\SiteSetting::get('contact_address') }}</span>
                         </li>
                     @endif
