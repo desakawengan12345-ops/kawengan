@@ -338,6 +338,18 @@ body {
     box-shadow: 0 8px 25px rgba(16, 185, 129, 0.35);
 }
 
+/* Pastikan tombol hijau tetap hijau saat di-tap/klik di HP/browser */
+.btn-primary:active,
+.btn-primary:focus,
+.btn-primary:focus-visible,
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary:not(:disabled):not(.disabled).active {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+    color: white;
+    box-shadow: 0 0 0 0.25rem rgba(16, 185, 129, 0.35);
+}
+
 .btn-outline-light {
     border-radius: 8px;
     font-weight: 600;
@@ -367,6 +379,25 @@ body {
     border-color: var(--primary);
     color: white;
     transform: translateY(-2px);
+}
+
+/* Pastikan tombol outline hijau tetap hijau saat di-tap/klik */
+.btn-outline-primary:active,
+.btn-outline-primary:focus,
+.btn-outline-primary:focus-visible,
+.btn-outline-primary:not(:disabled):not(.disabled):active,
+.btn-outline-primary:not(:disabled):not(.disabled).active {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: white;
+    box-shadow: 0 0 0 0.25rem rgba(16, 185, 129, 0.35);
+}
+
+/* Hilangkan tap highlight biru bawaan browser di tombol/link */
+.btn,
+a,
+button {
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* ===== SECTION ===== */
