@@ -996,7 +996,8 @@ body {
     .cta-section .btn-outline-light {
         width: 100%;
         justify-content: center;
-        padding: 14px 24px;
+        padding: 10px 18px;
+        font-size: 0.9rem;
     }
 
     .cta-section .d-flex {
