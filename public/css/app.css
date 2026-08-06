@@ -1024,18 +1024,26 @@ body {
         justify-content: center;
     }
 
-    #mainFooter .col-6,
-    #mainFooter .col-lg-3,
-    #mainFooter .col-lg-2 {
-        margin-bottom: 1.5rem;
+    #mainFooter .col-12 {
+        margin-bottom: 0.5rem;
     }
 
     #mainFooter h6 {
         margin-bottom: 0.75rem;
+        font-size: 0.95rem;
     }
 
     #mainFooter .list-unstyled li {
         margin-bottom: 0.5rem;
+    }
+
+    #mainFooter .footer-contact li {
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    #mainFooter hr + div {
+        text-align: center !important;
     }
 
     #scrollTop {
