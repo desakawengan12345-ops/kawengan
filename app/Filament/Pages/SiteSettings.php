@@ -65,7 +65,7 @@ class SiteSettings extends Page implements HasForms
                             ->openable()
                             ->imagePreviewHeight('200')
                             ->columnSpanFull()
-                            ->maxSize(2048),
+                            ->maxSize(5120),
                     ])->columns(2),
 
                 Forms\Components\Section::make('Profil Desa')
