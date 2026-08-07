@@ -74,20 +74,22 @@
                     {{-- Media Sosial --}}
                     @if(\App\Models\SiteSetting::get('social_instagram') || \App\Models\SiteSetting::get('social_facebook'))
                     <div class="mt-2">
-                        <p class="fw-semibold small mb-2">Ikuti Kami</p>
-                        <div class="d-flex gap-2">
+                        <p class="fw-semibold small mb-3">Ikuti Kami</p>
+                        <div class="d-flex gap-3">
                             @if(\App\Models\SiteSetting::get('social_instagram'))
                             <a href="{{ \App\Models\SiteSetting::get('social_instagram') }}"
                                target="_blank"
-                               class="btn btn-outline-secondary btn-sm">
-                                <i class="bi bi-instagram me-1"></i>Instagram
+                               class="social-circle instagram"
+                               aria-label="Instagram">
+                                <i class="bi bi-instagram fs-5"></i>
                             </a>
                             @endif
                             @if(\App\Models\SiteSetting::get('social_facebook'))
                             <a href="{{ \App\Models\SiteSetting::get('social_facebook') }}"
                                target="_blank"
-                               class="btn btn-outline-secondary btn-sm">
-                                <i class="bi bi-facebook me-1"></i>Facebook
+                               class="social-circle facebook"
+                               aria-label="Facebook">
+                                <i class="bi bi-facebook fs-5"></i>
                             </a>
                             @endif
                         </div>
