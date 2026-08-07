@@ -55,8 +55,20 @@ class SiteSettings extends Page implements HasForms
                             ->label('Tagline / Subjudul')
                             ->placeholder('contoh: Jelajahi keindahan dan budaya desa kami'),
                         Forms\Components\FileUpload::make('hero_image')
-                            ->label('Foto Hero')
-                            ->helperText('Foto background halaman utama. Format: JPG, PNG. Maksimal 2MB.')
+                            ->label('Foto Hero Desktop')
+                            ->helperText('Foto background halaman utama untuk tampilan desktop / PC. Rekomendasi landscape 16:9. Format: JPG, PNG. Maksimal 2MB.')
+                            ->image()
+                            ->disk('supabase')
+                            ->directory('settings')
+                            ->visibility('public')
+                            ->downloadable()
+                            ->openable()
+                            ->imagePreviewHeight('200')
+                            ->columnSpanFull()
+                            ->maxSize(5120),
+                        Forms\Components\FileUpload::make('hero_image_mobile')
+                            ->label('Foto Hero Mobile (Opsional)')
+                            ->helperText('Foto khusus tampilan HP. Jika diisi, akan tampil di layar kecil. Jika kosong, foto desktop akan digunakan. Rekomendasi portrait 9:16 atau 3:4. Format: JPG, PNG. Maksimal 2MB.')
                             ->image()
                             ->disk('supabase')
                             ->directory('settings')
@@ -194,7 +206,7 @@ class SiteSettings extends Page implements HasForms
     {
         $data = $this->form->getState();
 
-        $fileFields = ['hero_image', 'potential_image'];
+        $fileFields = ['hero_image', 'hero_image_mobile', 'potential_image'];
 
         foreach ($fileFields as $field) {
             if (isset($data[$field])) {

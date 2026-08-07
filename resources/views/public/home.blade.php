@@ -4,10 +4,21 @@
 
 @section('content')
 
+    @php
+        $heroDesktop = $settings['hero_image'] ?? '';
+        $heroMobile = $settings['hero_image_mobile'] ?? '';
+        $heroDefault = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920';
+        $heroDesktopUrl = $heroDesktop ? Storage::url($heroDesktop) : $heroDefault;
+        $heroMobileUrl = $heroMobile ? Storage::url($heroMobile) : $heroDesktopUrl;
+    @endphp
+
     {{-- HERO --}}
     <section class="hero-section">
-        <div class="hero-bg"
-            style="background-image: url('{{ $settings['hero_image'] ? Storage::url($settings['hero_image']) : 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920' }}')">
+        <div class="hero-bg d-none d-md-block"
+            style="background-image: url('{{ $heroDesktopUrl }}')">
+        </div>
+        <div class="hero-bg hero-bg-mobile d-md-none"
+            style="background-image: url('{{ $heroMobileUrl }}')">
         </div>
         <div class="hero-overlay"></div>
         <div class="container hero-content">

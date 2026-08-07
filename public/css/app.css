@@ -256,13 +256,18 @@ body {
     padding-top: 100px;
 }
 
-.hero-bg {
+.hero-bg,
+.hero-bg-mobile {
     position: absolute;
     inset: 0;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     z-index: 0;
+}
+
+.hero-bg-mobile {
+    background-position: center top;
 }
 
 .hero-overlay {
