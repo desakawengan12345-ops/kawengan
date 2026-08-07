@@ -96,7 +96,7 @@
                         <div class="col-lg-3 col-md-6">
                             <div class="card destination-card h-100 position-relative">
                                 <a href="{{ route('destinations.show', $destination->slug) }}"
-                                    class="destination-card-link d-lg-none stretched-link"
+                                    class="card-mobile-link d-lg-none stretched-link"
                                     aria-label="Lihat detail {{ $destination->name }}"></a>
                                 @if($destination->thumbnail)
                                     <img src="{{ Storage::url($destination->thumbnail) }}" class="card-img-top"
@@ -210,7 +210,10 @@
                 <div class="row g-4">
                     @foreach($posts as $post)
                         <div class="col-lg-4 col-md-6">
-                            <div class="card destination-card h-100">
+                            <div class="card destination-card h-100 position-relative">
+                                <a href="{{ route('news.show', $post->slug) }}"
+                                    class="card-mobile-link d-lg-none stretched-link"
+                                    aria-label="Baca berita {{ $post->title }}"></a>
                                 @if($post->thumbnail)
                                     <img src="{{ Storage::url($post->thumbnail) }}" class="card-img-top" alt="{{ $post->title }}">
                                 @else
@@ -230,7 +233,7 @@
                                             {{ Str::limit($post->excerpt, 100) }}
                                         </p>
                                     @endif
-                                    <a href="{{ route('news.show', $post->slug) }}" class="card-link mt-2">
+                                    <a href="{{ route('news.show', $post->slug) }}" class="card-link mt-2 position-relative" style="z-index: 2;">
                                         Baca Selengkapnya <i class="bi bi-arrow-right"></i>
                                     </a>
                                 </div>

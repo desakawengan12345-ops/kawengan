@@ -502,7 +502,7 @@ button {
     gap: 10px;
 }
 
-.destination-card-link {
+.card-mobile-link {
     position: absolute;
     inset: 0;
     z-index: 1;
@@ -511,7 +511,7 @@ button {
 }
 
 @media (min-width: 992px) {
-    .destination-card-link {
+    .card-mobile-link {
         display: none !important;
     }
 }

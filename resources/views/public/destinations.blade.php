@@ -20,7 +20,10 @@
         <div class="row g-4">
             @foreach($destinations as $destination)
             <div class="col-lg-3 col-md-6">
-                <div class="card destination-card shadow-sm">
+                <div class="card destination-card shadow-sm position-relative">
+                    <a href="{{ route('destinations.show', $destination->slug) }}"
+                       class="card-mobile-link d-lg-none stretched-link"
+                       aria-label="Lihat detail {{ $destination->name }}"></a>
                     @if($destination->thumbnail)
                     <img src="{{ Storage::url($destination->thumbnail) }}"
                          class="card-img-top" alt="{{ $destination->name }}">
@@ -35,7 +38,7 @@
                         <p class="card-text flex-grow-1">
                             {{ Str::limit(strip_tags($destination->description), 120) }}
                         </p>
-                        <a href="{{ route('destinations.show', $destination->slug) }}" class="card-link">
+                        <a href="{{ route('destinations.show', $destination->slug) }}" class="card-link position-relative" style="z-index: 2;">
                             Selengkapnya <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
