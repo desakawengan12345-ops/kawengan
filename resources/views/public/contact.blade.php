@@ -72,7 +72,7 @@
                     @endif
 
                     {{-- Media Sosial --}}
-                    @if(\App\Models\SiteSetting::get('social_instagram') || \App\Models\SiteSetting::get('social_facebook'))
+                    @if(\App\Models\SiteSetting::get('social_instagram') || \App\Models\SiteSetting::get('social_facebook') || \App\Models\SiteSetting::get('social_tiktok'))
                     <div class="mt-2">
                         <p class="fw-semibold small mb-3">Ikuti Kami</p>
                         <div class="d-flex gap-3">
@@ -90,6 +90,14 @@
                                class="social-circle facebook"
                                aria-label="Facebook">
                                 <i class="bi bi-facebook fs-5"></i>
+                            </a>
+                            @endif
+                            @if(\App\Models\SiteSetting::get('social_tiktok'))
+                            <a href="{{ \App\Models\SiteSetting::get('social_tiktok') }}"
+                               target="_blank"
+                               class="social-circle tiktok"
+                               aria-label="TikTok">
+                                <i class="bi bi-tiktok fs-5"></i>
                             </a>
                             @endif
                         </div>

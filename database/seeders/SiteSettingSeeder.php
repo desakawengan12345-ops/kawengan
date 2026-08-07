@@ -26,6 +26,7 @@ class SiteSettingSeeder extends Seeder
             ['key' => 'contact_gmaps',          'value' => ''],
             ['key' => 'social_instagram',       'value' => ''],
             ['key' => 'social_facebook',        'value' => ''],
+            ['key' => 'social_tiktok',          'value' => ''],
             ['key' => 'feature_news',           'value' => '1'],
             ['key' => 'potential_image',        'value' => ''],
             ['key' => 'potential_image_size',   'value' => '0'],

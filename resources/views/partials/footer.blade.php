@@ -22,6 +22,11 @@
                             <i class="bi bi-facebook"></i>
                         </a>
                     @endif
+                    @if(\App\Models\SiteSetting::get('social_tiktok'))
+                        <a href="{{ \App\Models\SiteSetting::get('social_tiktok') }}" target="_blank" class="social-btn" aria-label="TikTok">
+                            <i class="bi bi-tiktok"></i>
+                        </a>
+                    @endif
                     @if(\App\Models\SiteSetting::get('social_youtube'))
                         <a href="{{ \App\Models\SiteSetting::get('social_youtube') }}" target="_blank" class="social-btn" aria-label="YouTube">
                             <i class="bi bi-youtube"></i>

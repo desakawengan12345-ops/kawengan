@@ -160,6 +160,11 @@ class SiteSettings extends Page implements HasForms
                             ->placeholder('contoh: https://facebook.com/desawisatakawengan')
                             ->url()
                             ->prefixIcon('heroicon-o-globe-alt'),
+                        Forms\Components\TextInput::make('social_tiktok')
+                            ->label('TikTok')
+                            ->placeholder('contoh: https://tiktok.com/@desawisatakawengan')
+                            ->url()
+                            ->prefixIcon('heroicon-o-globe-alt'),
                     ])->columns(2),
 
                 Forms\Components\Section::make('Peta Potensi')
